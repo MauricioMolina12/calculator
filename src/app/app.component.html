@@ -4,7 +4,7 @@
         <span>{{summary}}</span>
     </div>
     <div class="calculator-buttons">
-      <button *ngFor="let button of buttons" (click)="addToDisplay(button.label)">
+      <button #key *ngFor="let button of buttons" (click)="addToDisplay(button.label, $event)">
           <span>{{button.label}}</span>
       </button>
     </div>

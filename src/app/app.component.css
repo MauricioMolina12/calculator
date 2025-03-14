@@ -1,61 +1,70 @@
-.wrapper-calculator{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #E0E3EC;
+.wrapper-calculator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e3ec;
 }
 
-.wrapper-calculator .calculator{
-    width: 20%;
-    height: 60%;
-    border-radius: 15px;
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+.wrapper-calculator .calculator {
+  width: 20%;
+  height: 60%;
+  border-radius: 15px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
-.wrapper-calculator .calculator .calculator-display{
-    width: 90%;
-    height: 16%;
-    border-radius: inherit;
-    font-size: 1.4rem;
-    border: 1px solid gray;
-    padding: 4px;
+.wrapper-calculator .calculator .calculator-display {
+  width: 90%;
+  height: 16%;
+  border-radius: inherit;
+  font-size: 1.4rem;
+  border: 1px solid gray;
+  padding: 4px;
+  overflow-x: hidden;
 }
 
-.wrapper-calculator .calculator .calculator-buttons{
-    width: 90%;
-    height: 70%;
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    border-radius: 10px;
-    border: none;
+.wrapper-calculator .calculator .calculator-display span {
+  text-overflow: ellipsis;
+  max-width: 90%;
 }
 
-
-.calculator-buttons button{
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    border-radius: 10px;
-    border: 1px solid rgb(210, 210, 210);
-    font-size: 1.2rem;
-    color: #535353;
+.wrapper-calculator .calculator .calculator-buttons {
+  width: 90%;
+  height: 70%;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  border-radius: 10px;
+  border: none;
 }
 
-.calculator-buttons button:last-of-type{
-    grid-column: 3/5;
+.calculator-buttons button {
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid rgb(210, 210, 210);
+  font-size: 1.2rem;
+  color: #535353;
+}
+
+.active {
+  transform: scale(0.9);
+}
+
+.calculator-buttons button:last-of-type {
+  grid-column: 3/5;
 }
 
 @media (max-width: 708px) {
-    .wrapper-calculator .calculator{
-        width: 90%;
-    }
+  .wrapper-calculator .calculator {
+    width: 90%;
+  }
 }

@@ -1,5 +1,12 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  QueryList,
+  Renderer2,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -13,6 +20,9 @@ export class AppComponent {
   title = 'app-calculator';
   key: any;
   summary: any = 0;
+  @ViewChildren('key') keyButtons!: QueryList<ElementRef>;
+
+  constructor(private renderer: Renderer2) {}
 
   buttons = [
     {
@@ -74,9 +84,18 @@ export class AppComponent {
     },
   ];
 
-  addToDisplay(value: string) {
+  addToDisplay(value: string, event: Event) {
+    const button = event.target as HTMLElement;
+    this.renderer.addClass(button, 'active');
+    setTimeout(() => this.renderer.removeClass(button, 'active'), 200);
+
+    if(this.summary.length > 9 && ['0','1','2','3','4','5','6','7','8','9'].includes(value)){
+      return;
+    }
+
+
     if (!this.summary) {
-      this.summary = ''; 
+      this.summary = '';
     }
 
     if (value === 'AC') {
@@ -96,13 +115,13 @@ export class AppComponent {
     const lastChar = this.summary.slice(-1);
     const operators = ['+', '-', '*', '/'];
     if (operators.includes(lastChar) && operators.includes(value)) {
-      return; 
+      return;
     }
 
     if (value === '.') {
       const lastNumber = this.summary.split(/[\+\-\*\/]/).pop();
       if (lastNumber && lastNumber.includes('.')) {
-        return; 
+        return;
       }
     }
 
@@ -110,7 +129,7 @@ export class AppComponent {
       try {
         this.summary = eval(this.summary).toString();
       } catch (e) {
-        this.summary = 'Error'; 
+        this.summary = 'Error';
       }
       return;
     }
